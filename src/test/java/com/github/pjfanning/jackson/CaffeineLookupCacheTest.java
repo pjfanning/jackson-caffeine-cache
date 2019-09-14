@@ -29,6 +29,6 @@ public class CaffeineLookupCacheTest {
         TypeFactory tf = TypeFactory.defaultInstance().withCache(cache);
         ObjectMapper mapper = new ObjectMapper();
         mapper.setTypeFactory(tf);
-        assertEquals("1000", mapper.writeValueAsString("1000"));
+        assertEquals("1000", mapper.writeValueAsString(1000));
     }
 }

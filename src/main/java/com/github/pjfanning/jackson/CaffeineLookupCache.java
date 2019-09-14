@@ -20,16 +20,12 @@ public class CaffeineLookupCache<K, V> extends LRUMap<K, V> {
 
     @Override
     public V put(K key, V value) {
-        V currentValue = get(key);
-        cache.put(key, value);
-        return currentValue;
+        return cache.put(key, value);
     }
 
     @Override
     public V putIfAbsent(K key, V value) {
-        V currentValue = get(key);
-        cache.putIfAbsent(key, value);
-        return currentValue;
+        return cache.putIfAbsent(key, value);
     }
 
     @Override
