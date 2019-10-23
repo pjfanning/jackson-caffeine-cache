@@ -1,9 +1,17 @@
-plugins {
-    id 'java'
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.bmuschko:gradle-nexus-plugin:2.3.1'
+    }
 }
 
-group 'com.github.pjfanning'
-version '1.0.0-SNAPSHOT'
+apply plugin: 'java'
+apply plugin: 'com.bmuschko.nexus'
+
+group = 'com.github.pjfanning'
+version = '1.0.0'
 
 sourceCompatibility = 1.8
 
@@ -15,4 +23,79 @@ dependencies {
     compile 'com.fasterxml.jackson.core:jackson-databind:2.9.9.3'
     compile 'com.github.ben-manes.caffeine:caffeine:2.8.0'
     testCompile 'junit:junit:4.12'
+}
+
+modifyPom {
+    project {
+        name 'jackson-caffeine-cache'
+        description 'A Caffeine based type cache for Jackson.'
+        url 'https://github.com/pjfanning/jackson-caffeine-cache'
+        inceptionYear '2019'
+
+        scm {
+            url 'https://github.com/pjfanning/jackson-caffeine-cache'
+            connection 'scm:git://github.com/pjfanning/jackson-caffeine-cache.git'
+            developerConnection 'scm:git://github.com/pjfanning/jackson-caffeine-cache.git'
+        }
+
+        licenses {
+            license {
+                name 'The Apache Software License, Version 2.0'
+                url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                distribution 'repo'
+            }
+        }
+
+        developers {
+            developer {
+                id 'pjfanning'
+                name 'PJ Fanning'
+            }
+        }
+    }
+}
+
+def customizePom(pom) {
+    pom.withXml {
+        def root = asNode()
+
+        // eliminate test-scoped dependencies (no need in maven central POMs)
+        root.dependencies.removeAll { dep ->
+            dep.scope == "test"
+        }
+
+        // add all items necessary for maven central publication
+        root.children().last() + {
+            resolveStrategy = Closure.DELEGATE_FIRST
+
+            description 'A Caffeine based type cache for Jackson.'
+            name 'POI Shared Strings'
+            url 'https://github.com/pjfanning/jackson-caffeine-cache'
+            organization {
+                name 'com.github.pjfanning'
+                url 'https://github.com/pjfanning'
+            }
+            issueManagement {
+                system 'GitHub'
+                url 'https://github.com/pjfanning/jackson-caffeine-cache/issues'
+            }
+            licenses {
+                license {
+                    name 'The Apache License, Version 2.0'
+                    url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                }
+            }
+            scm {
+                url 'https://github.com/pjfanning/jackson-caffeine-cache'
+                connection 'scm:git:git://github.com/pjfanning/jackson-caffeine-cache.git'
+                developerConnection 'scm:git:ssh://git@github.com:pjfanning/jackson-caffeine-cache.git'
+            }
+            developers {
+                developer {
+                    id 'pjfanning'
+                    name 'PJ Fanning'
+                }
+            }
+        }
+    }
 }
