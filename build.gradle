@@ -20,8 +20,8 @@ repositories {
 }
 
 dependencies {
-    compile 'com.fasterxml.jackson.core:jackson-databind:2.10.0'
-    compile 'com.github.ben-manes.caffeine:caffeine:2.8.0'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.10.3'
+    compile 'com.github.ben-manes.caffeine:caffeine:2.8.1'
     testCompile 'junit:junit:4.12'
 }
 
