@@ -12,10 +12,8 @@ import java.util.concurrent.ConcurrentMap;
 public class CaffeineLookupCache2<K, V> implements LookupCache<K, V> {
 
     private final ConcurrentMap<K, V> cache;
-    private final int maxEntries;
 
     public CaffeineLookupCache2(int maxEntries) {
-        this.maxEntries = maxEntries;
         Cache<K, V> fullCache = Caffeine.newBuilder().maximumSize(maxEntries).build();
         this.cache = fullCache.asMap();
     }
