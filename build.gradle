@@ -11,7 +11,7 @@ apply plugin: 'java'
 apply plugin: 'com.bmuschko.nexus'
 
 group = 'com.github.pjfanning'
-version = '1.0.1-SNAPSHOT'
+version = '1.0.1'
 
 sourceCompatibility = 1.8
 
