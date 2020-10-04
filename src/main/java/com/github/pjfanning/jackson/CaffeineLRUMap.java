@@ -1,19 +1,19 @@
 package com.github.pjfanning.jackson;
 
-import com.fasterxml.jackson.databind.util.LookupCache;
+import com.fasterxml.jackson.databind.util.LRUMap;
 import com.github.benmanes.caffeine.cache.Cache;
 import com.github.benmanes.caffeine.cache.Caffeine;
 
 import java.util.concurrent.ConcurrentMap;
 
-/**
- * Temporary version of CaffeineLookupCache that does not extend <code>LRUMap</code>
- */
-public class CaffeineLookupCache2<K, V> implements LookupCache<K, V> {
+public class CaffeineLRUMap<K, V> extends LRUMap<K, V> {
 
     private final ConcurrentMap<K, V> cache;
+    private final int maxEntries;
 
-    public CaffeineLookupCache2(int maxEntries) {
+    public CaffeineLRUMap(int maxEntries) {
+        super(4, 10); //super class has its own storage (that we will not use)
+        this.maxEntries = maxEntries;
         Cache<K, V> fullCache = Caffeine.newBuilder().maximumSize(maxEntries).build();
         this.cache = fullCache.asMap();
     }
@@ -41,5 +41,10 @@ public class CaffeineLookupCache2<K, V> implements LookupCache<K, V> {
     @Override
     public int size() {
         return cache.size();
+    }
+
+    @Override
+    protected Object readResolve() {
+        return new CaffeineLRUMap(maxEntries);
     }
 }
