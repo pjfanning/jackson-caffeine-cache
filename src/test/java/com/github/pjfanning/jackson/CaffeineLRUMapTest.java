@@ -4,16 +4,15 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.TypeFactory;
-import com.fasterxml.jackson.databind.util.LookupCache;
+import com.fasterxml.jackson.databind.util.LRUMap;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
+import static org.junit.Assert.*;
 
-public class CaffeineLookupCacheTest {
+public class CaffeineLRUMapTest {
     @Test
     public void testCache() {
-        LookupCache<Long, String> cache = new CaffeineLookupCache(10);
+        LRUMap<Long, String> cache = new CaffeineLRUMap(10);
         assertNull(cache.get(1000L));
         assertNull(cache.put(1000L, "Thousand"));
         assertEquals("Thousand", cache.get(1000L));
@@ -27,7 +26,7 @@ public class CaffeineLookupCacheTest {
 
     @Test
     public void testCompatibility() throws JsonProcessingException {
-        LookupCache<Object, JavaType> cache = new CaffeineLookupCache(1000);
+        LRUMap<Object, JavaType> cache = new CaffeineLRUMap(1000);
         TypeFactory tf = TypeFactory.defaultInstance().withCache(cache);
         ObjectMapper mapper = new ObjectMapper();
         mapper.setTypeFactory(tf);
