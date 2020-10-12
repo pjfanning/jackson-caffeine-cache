@@ -28,6 +28,6 @@ jackson-caffeine-cache 1.0.1 is the right version to use with Jackson 2.11.
         
 # Jackson 2.12 and above
  
-jackson-caffeine-cache 1.1.0 (unreleased but 1.1.0-SNAPSHOT is available) was refactored to take advantage of a change in Jackson 2.12.0 (and its release candidates). LRUMap now implements a LookupCache interface. This makes it easier to create custom cache implemenatations.
+jackson-caffeine-cache 1.1.0 (unreleased but 1.1.0-SNAPSHOT is available) was refactored to take advantage of a change in Jackson 2.12.0 (and its release candidates). LRUMap now implements a LookupCache interface. This makes it easier to create custom cache implementations.
 
-CaffeineLookupCache will still work with TypeFactory as above. Some Jackson APIs still require an LRUMap. If you want to use a Caffeine-based cache instead of a LRUMap, there is a new CaffeineLRUMap.
+CaffeineLookupCache will still work with TypeFactory, as above. Some Jackson APIs still require an LRUMap. If you want to use a Caffeine-based cache instead of a LRUMap, there is a new CaffeineLRUMap.
