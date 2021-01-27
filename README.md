@@ -13,6 +13,7 @@ To use an LRUMap with larger max size:
         LRUMap<Object, JavaType> cache = new LRUMap(4, 1000);
         TypeFactory tf = TypeFactory.defaultInstance().withCache(cache);
         ObjectMapper mapper = new ObjectMapper();
+        //ObjectMapper mapper = JsonMapper.builder().build();
         mapper.setTypeFactory(tf);
 
 To use this [Caffeine](https://github.com/ben-manes/caffeine) based cache:
@@ -20,6 +21,7 @@ To use this [Caffeine](https://github.com/ben-manes/caffeine) based cache:
         CaffeineLookupCache<Object, JavaType> cache = new CaffeineLookupCache(1000);
         TypeFactory tf = TypeFactory.defaultInstance().withCache(cache);
         ObjectMapper mapper = new ObjectMapper();
+        //ObjectMapper mapper = JsonMapper.builder().build();
         mapper.setTypeFactory(tf);
         
 # Jackson 2.11
@@ -36,10 +38,8 @@ CaffeineLookupCache will still work with TypeFactory, as above. Some Jackson API
 
 After the v2.12.2 release, it will be possible to replace the default LRUMap descriptorCache.
 
-```
         import com.fasterxml.jackson.databind.type.ClassKey
         import com.fasterxml.jackson.module.scala.introspect.{BeanDescriptor, ScalaAnnotationIntrospector}
         
         val cache = new CaffeineLookupCache[ClassKey, BeanDescriptor](1000)
         ScalaAnnotationIntrospector.setDescriptorCache(cache)
-```
