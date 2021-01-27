@@ -2,6 +2,7 @@ package com.github.pjfanning.jackson;
 
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 import com.fasterxml.jackson.databind.util.SimpleLookupCache;
 import org.junit.Test;
@@ -27,8 +28,7 @@ public class CaffeineLRUMapTest {
     public void testCompatibility() {
         SimpleLookupCache<Object, JavaType> cache = new CaffeineLRUMap(1000);
         TypeFactory tf = TypeFactory.defaultInstance().withCache(cache);
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.setTypeFactory(tf);
+        ObjectMapper mapper = JsonMapper.builder().typeFactory(tf).build();
         assertEquals("1000", mapper.writeValueAsString(1000));
     }
 }
