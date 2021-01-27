@@ -1,10 +1,9 @@
 package com.github.pjfanning.jackson;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.TypeFactory;
-import com.fasterxml.jackson.databind.util.LRUMap;
+import com.fasterxml.jackson.databind.util.SimpleLookupCache;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -12,7 +11,7 @@ import static org.junit.Assert.*;
 public class CaffeineLRUMapTest {
     @Test
     public void testCache() {
-        LRUMap<Long, String> cache = new CaffeineLRUMap(10);
+        SimpleLookupCache<Long, String> cache = new CaffeineLRUMap(10);
         assertNull(cache.get(1000L));
         assertNull(cache.put(1000L, "Thousand"));
         assertEquals("Thousand", cache.get(1000L));
@@ -25,8 +24,8 @@ public class CaffeineLRUMapTest {
     }
 
     @Test
-    public void testCompatibility() throws JsonProcessingException {
-        LRUMap<Object, JavaType> cache = new CaffeineLRUMap(1000);
+    public void testCompatibility() {
+        SimpleLookupCache<Object, JavaType> cache = new CaffeineLRUMap(1000);
         TypeFactory tf = TypeFactory.defaultInstance().withCache(cache);
         ObjectMapper mapper = new ObjectMapper();
         mapper.setTypeFactory(tf);

@@ -1,6 +1,5 @@
 package com.github.pjfanning.jackson;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.json.JsonMapper;
@@ -27,7 +26,7 @@ public class CaffeineLookupCacheTest {
     }
 
     @Test
-    public void testCompatibility() throws JsonProcessingException {
+    public void testCompatibility() {
         LookupCache<Object, JavaType> cache = new CaffeineLookupCache(1000);
         TypeFactory tf = TypeFactory.defaultInstance().withCache(cache);
         ObjectMapper mapper = new ObjectMapper();
@@ -36,7 +35,7 @@ public class CaffeineLookupCacheTest {
     }
 
     @Test
-    public void testBuilderCompatibility() throws JsonProcessingException {
+    public void testBuilderCompatibility() {
         LookupCache<Object, JavaType> cache = new CaffeineLookupCache(1000);
         TypeFactory tf = TypeFactory.defaultInstance().withCache(cache);
         ObjectMapper mapper = JsonMapper.builder().typeFactory(tf).build();

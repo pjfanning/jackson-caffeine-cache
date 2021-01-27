@@ -43,7 +43,7 @@ public class CaffeineLookupCache<K, V> implements LookupCache<K, V> {
     }
 
     @Override
-    public LookupCache<K, V> emptyCopy() {
-        return new CaffeineLookupCache<>(maxEntries);
+    public LookupCache<K, V> snapshot() {
+        return new CaffeineLookupCache(maxEntries);
     }
 }
