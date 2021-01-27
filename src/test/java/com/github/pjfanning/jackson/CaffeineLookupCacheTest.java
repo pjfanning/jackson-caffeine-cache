@@ -39,8 +39,7 @@ public class CaffeineLookupCacheTest {
     public void testBuilderCompatibility() throws JsonProcessingException {
         LookupCache<Object, JavaType> cache = new CaffeineLookupCache(1000);
         TypeFactory tf = TypeFactory.defaultInstance().withCache(cache);
-        ObjectMapper mapper = JsonMapper.builder().build();
-        mapper.setTypeFactory(tf);
+        ObjectMapper mapper = JsonMapper.builder().typeFactory(tf).build();
         assertEquals("1000", mapper.writeValueAsString(1000));
     }
 }
