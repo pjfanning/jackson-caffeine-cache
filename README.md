@@ -13,16 +13,16 @@ To use an LRUMap with larger max size:
         LRUMap<Object, JavaType> cache = new LRUMap(4, 1000);
         TypeFactory tf = TypeFactory.defaultInstance().withCache(cache);
         ObjectMapper mapper = new ObjectMapper();
-        //ObjectMapper mapper = JsonMapper.builder().build();
         mapper.setTypeFactory(tf);
+        //ObjectMapper mapper = JsonMapper.builder().typeFactory(tf).build();
 
 To use this [Caffeine](https://github.com/ben-manes/caffeine) based cache:
 
         CaffeineLookupCache<Object, JavaType> cache = new CaffeineLookupCache(1000);
         TypeFactory tf = TypeFactory.defaultInstance().withCache(cache);
         ObjectMapper mapper = new ObjectMapper();
-        //ObjectMapper mapper = JsonMapper.builder().build();
         mapper.setTypeFactory(tf);
+        //or ObjectMapper mapper = JsonMapper.builder().typeFactory(tf).build();
         
 # Jackson 2.11
 
