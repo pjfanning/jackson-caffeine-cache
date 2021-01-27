@@ -6,9 +6,6 @@ import com.github.benmanes.caffeine.cache.Caffeine;
 
 import java.util.concurrent.ConcurrentMap;
 
-/**
- * Temporary version of CaffeineLookupCache that does not extend <code>LRUMap</code>
- */
 public class CaffeineLookupCache<K, V> implements LookupCache<K, V> {
 
     private final ConcurrentMap<K, V> cache;
