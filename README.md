@@ -14,7 +14,7 @@ To use an LRUMap with larger max size:
         TypeFactory tf = TypeFactory.defaultInstance().withCache(cache);
         ObjectMapper mapper = new ObjectMapper();
         mapper.setTypeFactory(tf);
-        //ObjectMapper mapper = JsonMapper.builder().typeFactory(tf).build();
+        //or ObjectMapper mapper = JsonMapper.builder().typeFactory(tf).build();
 
 To use this [Caffeine](https://github.com/ben-manes/caffeine) based cache:
 
