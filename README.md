@@ -6,7 +6,7 @@
 A Caffeine based type cache for Jackson.
 
 The built-in type cache ([LRUMap](https://github.com/FasterXML/jackson-databind/blob/2.10/src/main/java/com/fasterxml/jackson/databind/util/LRUMap.java))
-in Jackson has synchronization that might cause performance issues if you have a lot of types in the cache (see [issue](https://github.com/FasterXML/jackson-module-scala/issues/428)).
+in Jackson has synchronization that might cause performance issues if you have a lot of types in the cache (see [issue](https://github.com/FasterXML/jackson-module-scala/issues/428)). LRUMap empties the cache when it fills up. The Caffeine cache will remove the oldest entries.
 
 To use an LRUMap with larger max size:
 
@@ -31,3 +31,15 @@ jackson-caffeine-cache 1.0.1 is the right version to use with Jackson 2.11.
 jackson-caffeine-cache 1.1.0 was refactored to take advantage of a change in Jackson 2.12.0. LRUMap now implements a LookupCache interface. This makes it easier to create custom cache implementations.
 
 CaffeineLookupCache will still work with TypeFactory, as above. Some Jackson APIs still require an LRUMap. If you want to use a Caffeine-based cache instead of a LRUMap, there is a new CaffeineLRUMap.
+
+# Jackson-Modile-Scala 2.12.2 and above
+
+After the v2.12.2 release, it will be possible to replace the default LRUMap descriptorCache.
+
+```
+        import com.fasterxml.jackson.databind.type.ClassKey
+        import com.fasterxml.jackson.module.scala.introspect.{BeanDescriptor, ScalaAnnotationIntrospector}
+        
+        val cache = new CaffeineLookupCache[ClassKey, BeanDescriptor](1000)
+        ScalaAnnotationIntrospector.setDescriptorCache(cache)
+```
