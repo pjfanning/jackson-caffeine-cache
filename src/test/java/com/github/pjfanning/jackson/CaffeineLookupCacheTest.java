@@ -3,6 +3,7 @@ package com.github.pjfanning.jackson;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 import com.fasterxml.jackson.databind.util.LookupCache;
 import org.junit.Test;
@@ -30,6 +31,15 @@ public class CaffeineLookupCacheTest {
         LookupCache<Object, JavaType> cache = new CaffeineLookupCache(1000);
         TypeFactory tf = TypeFactory.defaultInstance().withCache(cache);
         ObjectMapper mapper = new ObjectMapper();
+        mapper.setTypeFactory(tf);
+        assertEquals("1000", mapper.writeValueAsString(1000));
+    }
+
+    @Test
+    public void testBuilderCompatibility() throws JsonProcessingException {
+        LookupCache<Object, JavaType> cache = new CaffeineLookupCache(1000);
+        TypeFactory tf = TypeFactory.defaultInstance().withCache(cache);
+        ObjectMapper mapper = JsonMapper.builder().build();
         mapper.setTypeFactory(tf);
         assertEquals("1000", mapper.writeValueAsString(1000));
     }
