@@ -22,7 +22,7 @@ repositories {
 dependencies {
     compile 'com.fasterxml.jackson.core:jackson-databind:2.12.1'
     compile 'com.github.ben-manes.caffeine:caffeine:2.8.8'
-    testCompile 'junit:junit:4.13.1'
+    testCompile 'junit:junit:4.13.2'
 }
 
 modifyPom {
