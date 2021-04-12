@@ -1,6 +1,6 @@
 # jackson-caffeine-cache
 
-[![Build Status](https://travis-ci.org/pjfanning/jackson-caffeine-cache.svg?branch=master)](https://travis-ci.org/pjfanning/jackson-caffeine-cache)
+[![Build Status](https://travis-ci.com/pjfanning/jackson-caffeine-cache.svg?branch=master)](https://travis-ci.com/pjfanning/jackson-caffeine-cache)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.pjfanning/jackson-caffeine-cache/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.pjfanning/jackson-caffeine-cache)
 
 A Caffeine based type cache for Jackson.
