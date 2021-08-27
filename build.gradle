@@ -24,7 +24,7 @@ repositories {
 
 dependencies {
     compile 'com.fasterxml.jackson.core:jackson-databind:3.0.0-SNAPSHOT'
-    compile 'com.github.ben-manes.caffeine:caffeine:2.9.0'
+    compile 'com.github.ben-manes.caffeine:caffeine:2.9.2'
     testCompile 'junit:junit:4.13.2'
 }
 
