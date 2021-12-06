@@ -34,7 +34,7 @@ jackson-caffeine-cache 1.1.0 was refactored to take advantage of a change in Jac
 
 CaffeineLookupCache will still work with TypeFactory, as above. Some Jackson APIs still require an LRUMap. If you want to use a Caffeine-based cache instead of a LRUMap, there is a new CaffeineLRUMap.
 
-# Jackson-Module-Scala 2.12.2 and above
+# Jackson-Module-Scala
 
 After the v2.12.2 release, it will be possible to replace the default LRUMap descriptorCache.
 
@@ -43,3 +43,7 @@ After the v2.12.2 release, it will be possible to replace the default LRUMap des
         
         val cache = new CaffeineLookupCache[ClassKey, BeanDescriptor](1000)
         ScalaAnnotationIntrospector.setDescriptorCache(cache)
+        //after v2.13.1 is released, the method is deprecated and replaced by 
+        ScalaAnnotationIntrospectorModule.setDescriptorCache(cache)
+        
+
