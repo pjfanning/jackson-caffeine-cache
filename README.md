@@ -39,7 +39,7 @@ CaffeineLookupCache will still work with TypeFactory, as above. Some Jackson API
 After the v2.12.2 release, it will be possible to replace the default LRUMap descriptorCache.
 
         import com.fasterxml.jackson.databind.type.ClassKey
-        import com.fasterxml.jackson.module.scala.introspect.{BeanDescriptor, ScalaAnnotationIntrospector}
+        import com.fasterxml.jackson.module.scala.introspect._
         
         val cache = new CaffeineLookupCache[ClassKey, BeanDescriptor](1000)
         ScalaAnnotationIntrospector.setDescriptorCache(cache)
