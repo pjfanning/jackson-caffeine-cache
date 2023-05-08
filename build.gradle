@@ -6,7 +6,7 @@ plugins {
 }
 
 group = 'com.github.pjfanning'
-version = '1.4.1-SNAPSHOT'
+version = '1.5.0-SNAPSHOT'
 
 sourceCompatibility = 1.8
 
@@ -19,6 +19,16 @@ dependencies {
     implementation 'com.github.ben-manes.caffeine:caffeine:2.9.3'
     testImplementation 'junit:junit:4.13.2'
 }
+
+tasks.named('jar') {
+    manifest {
+        attributes('Automatic-Module-Name': 'com.github.pjfanning.jackson.caffeinecache')
+    }
+}
+
+compileTestJava.dependsOn('copyLicenseToBuildResources')
+jar.dependsOn('copyLicenseToBuildResources')
+javadoc.dependsOn('copyLicenseToBuildResources')
 
 java {
     withJavadocJar()
@@ -67,4 +77,9 @@ signing {
     def signingPassword = findProperty("signingPassword")
     useInMemoryPgpKeys(signingKey, signingPassword)
     sign publishing.publications.mavenJava
+}
+
+tasks.register('copyLicenseToBuildResources', Copy) {
+    from layout.projectDirectory.file("LICENSE")
+    into layout.buildDirectory.dir("resources/main/META-INF")
 }
