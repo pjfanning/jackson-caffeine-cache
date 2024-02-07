@@ -5,8 +5,8 @@
 
 A Caffeine based type cache for Jackson. This is built with Caffeine 2.9 in order to support Java 8. If you are using Java 11 or above, it is recommended that you have your build pick up the latest Cafferine 3.x jar. It is expected that this will work ok with jackson-caffeine-cache.
 
-The built-in type cache ([LRUMap](https://github.com/FasterXML/jackson-databind/blob/2.10/src/main/java/com/fasterxml/jackson/databind/util/LRUMap.java))
-in Jackson has synchronization that might cause performance issues if you have a lot of types in the cache (see [issue](https://github.com/FasterXML/jackson-module-scala/issues/428)). In older versions of Jackson, LRUMap emptied the cache when it filled up. The Caffeine cache will remove the oldest entries (as does LRUMap in the latest Jackson releases).
+The built-in type cache ([LRUMap](https://github.com/FasterXML/jackson-databind/blob/2.17/src/main/java/com/fasterxml/jackson/databind/util/LRUMap.java))
+in Jackson has synchronization that might cause performance issues if you have a lot of types in the cache (see [issue](https://github.com/FasterXML/jackson-module-scala/issues/428)). In older versions of Jackson, LRUMap emptied the cache when it filled up. The Caffeine cache will remove the oldest entries (as does LRUMap since the Jackson 2.14.0 release).
 
 To use an LRUMap with larger max size:
 
