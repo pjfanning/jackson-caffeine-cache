@@ -15,7 +15,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.fasterxml.jackson.core:jackson-databind:2.16.2'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.17.0'
     implementation 'com.github.ben-manes.caffeine:caffeine:2.9.3'
     testImplementation 'junit:junit:4.13.2'
 }
