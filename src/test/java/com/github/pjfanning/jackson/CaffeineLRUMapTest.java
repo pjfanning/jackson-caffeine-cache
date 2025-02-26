@@ -27,7 +27,7 @@ public class CaffeineLRUMapTest {
     @Test
     public void testCompatibility() {
         SimpleLookupCache<Object, JavaType> cache = new CaffeineLRUMap(1000);
-        TypeFactory tf = TypeFactory.defaultInstance().withCache(cache);
+        TypeFactory tf = TypeFactory.createDefaultInstance().withCache(cache);
         ObjectMapper mapper = JsonMapper.builder().typeFactory(tf).build();
         assertEquals("1000", mapper.writeValueAsString(1000));
     }

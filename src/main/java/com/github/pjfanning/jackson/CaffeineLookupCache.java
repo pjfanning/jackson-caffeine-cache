@@ -28,13 +28,8 @@ public class CaffeineLookupCache<K, V> implements LookupCache<K, V> {
     }
 
     @Override
-    public V get(Object key) {
+    public V get(K key) {
         return cache.get(key);
-    }
-
-    @Override
-    public void clear() {
-        cache.clear();
     }
 
     @Override
@@ -42,9 +37,13 @@ public class CaffeineLookupCache<K, V> implements LookupCache<K, V> {
         return cache.size();
     }
 
+    public void clear() {
+        cache.clear();
+    }
+
     @Override
     public LookupCache<K, V> emptyCopy() {
-        return new CaffeineLookupCache(maxEntries);
+        return new CaffeineLookupCache<>(maxEntries);
     }
 
     @Override

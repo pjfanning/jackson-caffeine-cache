@@ -28,16 +28,7 @@ public class CaffeineLookupCacheTest {
     @Test
     public void testCompatibility() {
         LookupCache<Object, JavaType> cache = new CaffeineLookupCache(1000);
-        TypeFactory tf = TypeFactory.defaultInstance().withCache(cache);
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.setTypeFactory(tf);
-        assertEquals("1000", mapper.writeValueAsString(1000));
-    }
-
-    @Test
-    public void testBuilderCompatibility() {
-        LookupCache<Object, JavaType> cache = new CaffeineLookupCache(1000);
-        TypeFactory tf = TypeFactory.defaultInstance().withCache(cache);
+        TypeFactory tf = TypeFactory.createDefaultInstance().withCache(cache);
         ObjectMapper mapper = JsonMapper.builder().typeFactory(tf).build();
         assertEquals("1000", mapper.writeValueAsString(1000));
     }

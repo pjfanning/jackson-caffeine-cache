@@ -30,7 +30,7 @@ public class CaffeineLRUMap<K, V> extends SimpleLookupCache<K, V> {
     }
 
     @Override
-    public V get(Object key) {
+    public V get(K key) {
         return cache.get(key);
     }
 
