@@ -1,7 +1,7 @@
 package com.github.pjfanning.jackson;
 
-import com.fasterxml.jackson.databind.util.LookupCache;
-import com.fasterxml.jackson.databind.util.SimpleLookupCache;
+import tools.jackson.databind.util.LookupCache;
+import tools.jackson.databind.util.SimpleLookupCache;
 import com.github.benmanes.caffeine.cache.Cache;
 import com.github.benmanes.caffeine.cache.Caffeine;
 
@@ -55,7 +55,7 @@ public class CaffeineLRUMap<K, V> extends SimpleLookupCache<K, V> {
     }
 
     @Override
-    public LookupCache<K, V> snapshot() {
+    public SimpleLookupCache<K, V> snapshot() {
         return new CaffeineLRUMap(maxEntries);
     }
 }

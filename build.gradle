@@ -15,10 +15,13 @@ repositories {
     maven {
         url "https://oss.sonatype.org/content/repositories/snapshots"
     }
+    maven {
+        url "https://s01.oss.sonatype.org/content/repositories/snapshots"
+    }
 }
 
 dependencies {
-    implementation 'com.fasterxml.jackson.core:jackson-databind:3.0.0-SNAPSHOT'
+    implementation 'tools.jackson.core:jackson-databind:3.0.0-SNAPSHOT'
     implementation 'com.github.ben-manes.caffeine:caffeine:2.9.3'
     testImplementation 'junit:junit:4.13.2'
 }
