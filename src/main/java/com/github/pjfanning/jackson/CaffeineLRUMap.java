@@ -12,7 +12,7 @@ public class CaffeineLRUMap<K, V> extends LRUMap<K, V> {
     private final ConcurrentMap<K, V> cache;
     private final int maxEntries;
 
-    public CaffeineLRUMap(int maxEntries) {
+    public CaffeineLRUMap(final int maxEntries) {
         super(4, 10); //super class has its own storage (that we will not use)
         this.maxEntries = maxEntries;
         Cache<K, V> fullCache = Caffeine.newBuilder().maximumSize(maxEntries).build();
