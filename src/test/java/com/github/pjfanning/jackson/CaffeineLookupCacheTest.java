@@ -1,11 +1,10 @@
 package com.github.pjfanning.jackson;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JavaType;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.json.JsonMapper;
-import com.fasterxml.jackson.databind.type.TypeFactory;
-import com.fasterxml.jackson.databind.util.LookupCache;
+import tools.jackson.databind.JavaType;
+import tools.jackson.databind.ObjectMapper;
+import tools.jackson.databind.json.JsonMapper;
+import tools.jackson.databind.type.TypeFactory;
+import tools.jackson.databind.util.LookupCache;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -27,18 +26,9 @@ public class CaffeineLookupCacheTest {
     }
 
     @Test
-    public void testCompatibility() throws JsonProcessingException {
+    public void testCompatibility() {
         LookupCache<Object, JavaType> cache = new CaffeineLookupCache(1000);
-        TypeFactory tf = TypeFactory.defaultInstance().withCache(cache);
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.setTypeFactory(tf);
-        assertEquals("1000", mapper.writeValueAsString(1000));
-    }
-
-    @Test
-    public void testBuilderCompatibility() throws JsonProcessingException {
-        LookupCache<Object, JavaType> cache = new CaffeineLookupCache(1000);
-        TypeFactory tf = TypeFactory.defaultInstance().withCache(cache);
+        TypeFactory tf = TypeFactory.createDefaultInstance().withCache(cache);
         ObjectMapper mapper = JsonMapper.builder().typeFactory(tf).build();
         assertEquals("1000", mapper.writeValueAsString(1000));
     }

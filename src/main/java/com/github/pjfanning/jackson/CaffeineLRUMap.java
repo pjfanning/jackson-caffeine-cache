@@ -1,13 +1,13 @@
 package com.github.pjfanning.jackson;
 
-import com.fasterxml.jackson.databind.util.LRUMap;
-import com.fasterxml.jackson.databind.util.LookupCache;
+import tools.jackson.databind.util.LookupCache;
+import tools.jackson.databind.util.SimpleLookupCache;
 import com.github.benmanes.caffeine.cache.Cache;
 import com.github.benmanes.caffeine.cache.Caffeine;
 
 import java.util.concurrent.ConcurrentMap;
 
-public class CaffeineLRUMap<K, V> extends LRUMap<K, V> {
+public class CaffeineLRUMap<K, V> extends SimpleLookupCache<K, V> {
 
     private final ConcurrentMap<K, V> cache;
     private final int maxEntries;
@@ -30,7 +30,7 @@ public class CaffeineLRUMap<K, V> extends LRUMap<K, V> {
     }
 
     @Override
-    public V get(Object key) {
+    public V get(K key) {
         return cache.get(key);
     }
 
@@ -52,5 +52,10 @@ public class CaffeineLRUMap<K, V> extends LRUMap<K, V> {
     @Override
     public LookupCache<K, V> emptyCopy() {
         return new CaffeineLRUMap<>(maxEntries);
+    }
+
+    @Override
+    public SimpleLookupCache<K, V> snapshot() {
+        return new CaffeineLRUMap(maxEntries);
     }
 }

@@ -1,6 +1,6 @@
 package com.github.pjfanning.jackson;
 
-import com.fasterxml.jackson.databind.util.LookupCache;
+import tools.jackson.databind.util.LookupCache;
 import com.github.benmanes.caffeine.cache.Cache;
 import com.github.benmanes.caffeine.cache.Caffeine;
 
@@ -28,13 +28,8 @@ public class CaffeineLookupCache<K, V> implements LookupCache<K, V> {
     }
 
     @Override
-    public V get(Object key) {
+    public V get(K key) {
         return cache.get(key);
-    }
-
-    @Override
-    public void clear() {
-        cache.clear();
     }
 
     @Override
@@ -42,8 +37,17 @@ public class CaffeineLookupCache<K, V> implements LookupCache<K, V> {
         return cache.size();
     }
 
+    public void clear() {
+        cache.clear();
+    }
+
     @Override
     public LookupCache<K, V> emptyCopy() {
         return new CaffeineLookupCache<>(maxEntries);
+    }
+
+    @Override
+    public CaffeineLookupCache<K, V> snapshot() {
+        return new CaffeineLookupCache(maxEntries);
     }
 }
