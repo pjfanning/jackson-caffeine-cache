@@ -51,6 +51,6 @@ public class CaffeineLRUMap<K, V> extends LRUMap<K, V> {
 
     @Override
     public LookupCache<K, V> emptyCopy() {
-        return new CaffeineLookupCache<>(maxEntries);
+        return new CaffeineLRUMap<>(maxEntries);
     }
 }
