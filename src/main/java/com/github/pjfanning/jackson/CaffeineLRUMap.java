@@ -1,6 +1,7 @@
 package com.github.pjfanning.jackson;
 
 import com.fasterxml.jackson.databind.util.LRUMap;
+import com.fasterxml.jackson.databind.util.LookupCache;
 import com.github.benmanes.caffeine.cache.Cache;
 import com.github.benmanes.caffeine.cache.Caffeine;
 
@@ -46,5 +47,10 @@ public class CaffeineLRUMap<K, V> extends LRUMap<K, V> {
     @Override
     protected Object readResolve() {
         return new CaffeineLRUMap(maxEntries);
+    }
+
+    @Override
+    public LookupCache<K, V> emptyCopy() {
+        return new CaffeineLookupCache<>(maxEntries);
     }
 }
