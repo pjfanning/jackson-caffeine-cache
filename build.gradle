@@ -12,16 +12,10 @@ sourceCompatibility = 1.17
 
 repositories {
     mavenCentral()
-    maven {
-        url "https://oss.sonatype.org/content/repositories/snapshots"
-    }
-    maven {
-        url "https://s01.oss.sonatype.org/content/repositories/snapshots"
-    }
 }
 
 dependencies {
-    implementation 'tools.jackson.core:jackson-databind:3.0.0-SNAPSHOT'
+    implementation 'tools.jackson.core:jackson-databind:3.0.0-rc1'
     implementation 'com.github.ben-manes.caffeine:caffeine:3.2.0'
     testImplementation 'junit:junit:4.13.2'
 }
