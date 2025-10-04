@@ -1,6 +1,5 @@
 # jackson-caffeine-cache
 
-[![Build Status](https://travis-ci.com/pjfanning/jackson-caffeine-cache.svg?branch=master)](https://travis-ci.com/pjfanning/jackson-caffeine-cache)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.pjfanning/jackson-caffeine-cache/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.pjfanning/jackson-caffeine-cache)
 
 A Caffeine based type cache for Jackson. This is built with Caffeine 2.9 in order to support Java 8. If you are using Java 11 or above, it is recommended that you have your build pick up the latest Cafferine 3.x jar. It is expected that this will work ok with jackson-caffeine-cache.
