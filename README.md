@@ -38,8 +38,12 @@ CaffeineLookupCache will still work with TypeFactory, as above. Some Jackson API
 
 # Jackson-Module-Scala
 
-After the v2.12.2 release, it is possible to replace the default LRUMap descriptorCache.
+After the Jackson-Module-Scala 2.12.2 release, it is possible to replace the default LRUMap descriptorCache.
 
+        // Jackson 2.x imports
+        import com.fasterxml.jackson.databind.type.ClassKey
+        import com.fasterxml.jackson.module.scala.introspect._
+        // Jackson 3.x imports
         import tools.jackson.databind.type.ClassKey
         import tools.jackson.module.scala.introspect._
         
