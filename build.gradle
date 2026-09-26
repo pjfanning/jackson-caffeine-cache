@@ -19,7 +19,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'tools.jackson.core:jackson-databind:3.2.2'
+    implementation 'tools.jackson.core:jackson-databind:3.2.3'
     implementation 'com.github.ben-manes.caffeine:caffeine:3.3.0'
     testImplementation 'junit:junit:4.13.2'
 }
